@@ -20,6 +20,10 @@ angular.module('MyApp').controller('DemoCtrl', function($scope, $http) {
 			var result = response;
 			console.log("Hi i am back controller");
 			console.log(result);
+			if(result == "fail"){
+				alert("Wrong EmailId - password");
+				window.location = '/';				
+				}
 			
 		});
 

@@ -28,15 +28,21 @@ function login(req,res){
 		if(err){
 			console.log(err);
 		}
-		else{
+		else if(result.length > 0){
 			console.log(result[0].emailId);
 			console.log(result[0].password);
+			console.log(result);
 			if(emailId == result[0].emailId && password == result[0].password){
 				req.session.emailId = emailId;
 				req.session.firstName = result[0].firstName;
 				res.send(result);
 			}
 			
+		}
+		else{
+			console.log("This is not a valid password");
+			result = "fail";
+			res.send(result);
 		}
 	},checkUser);
 }
