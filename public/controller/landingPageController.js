@@ -18,12 +18,15 @@ angular.module('MyApp').controller('DemoCtrl', function($scope, $http) {
     	console.log($scope.user.password);
 		$http.post('/login',{emailId : $scope.user.email, password : $scope.user.password}).success(function(response){
 			var result = response;
-			console.log("Hi i am back controller");
+			console.log("Hi i am back in controller");
 			console.log(result);
 			if(result == "fail"){
 				alert("Wrong EmailId - password");
 				window.location = '/';				
 				}
+			else{
+				window.location = '/home'
+			}
 			
 		});
 

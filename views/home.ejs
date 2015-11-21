@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+ <title>About</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+ <body>
+ <div class="container-fluid" ng-controller="AppCtrl">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><h2>Facebook</h2></a>
+    </div>
+    
+    <div>
+      <ul class="nav navbar-nav">
+        	<li><a href="/about">{{user}}</a></li>   <!-- Give User Name here -->
+        	<li><a href="/landingPage">home</a></li>
+        	<li><a href="/logout">Logout</a></li>
+      	</ul>
+    </div>
+  </div>
+</nav>
+  <p></p>
+  <div class="row">
+    <div class="col-sm-12" style="border-top: 2px;background-color:lavender;"><span><h3>Interests</h3></span></button></div>     <!-- Name of page shoud be here -->
+  </div>
+   <nav class="navbar navbar-default" float= "right">
+  <div>
+      	<ul class="nav navbar-nav">
+	        <li><a href="/about">About</a></li>
+	        <li><a href="/friends">Friends</a></li>
+	        <li class="active"><a href="/interests">Interests</a></li>
+        </ul>
+  </div>
+  </nav>
+  
+  <div class="leftSidebar" style="width: 30%; height: 100%; border-top: 5px; text-align: left;float: left;">
+  	<div class="btn-group-vertical">
+  <button type="button" class="btn btn-primary" ng-click="task()">Task</button>	
+  <button type="button" class="btn btn-primary" ng-click="music()">music</button>
+  <button type="button" class="btn btn-primary" ng-click="tvShows()">TV Shows</button>
+  <button type="button" class="btn btn-primary" ng-click="sports()">Sports</button>
+  <button type="button" class="btn btn-primary" ng-click="addInterests()">Add Interests</button>
+	</div>
+  </div> 
+ <div class="mainSection" style="width: 70%; height: 100%; text-align: left;float: left;">
+	< 
+ 
+ 
+  <table class="table table-hover" ng-show="musicShow">
+    <tbody>
+      <tr ng-repeat="oneMusic in displaymusic">
+      	 <td>{{oneMusic.music}}</td>	
+      </tr>
+      
+    </tbody>
+  </table>
+  
+   <table class="table table-hover" ng-show="tvShowsShow">
+    <tbody>
+      <tr ng-repeat="oneShow in displayshow">
+      	 <td>{{oneShow.shows}}</td>	
+      </tr>
+      
+    </tbody>
+  </table>
+  
+   <table class="table table-hover" ng-show="sportsShow">
+    <tbody>
+      <tr ng-repeat="oneSport in displaysport">
+      	 <td>{{oneSport.sport}}</td>	
+      </tr>
+      
+    </tbody>
+  </table>
+  
+  <div ng-show="addInterestsShow">
+  	<textarea rows="1" cols="100" class='animated' name="postBox" ng-model="myMusic" placeholder="Enter Music"></textarea>
+  	<button type="button" class="btn btn-primary" ng-click="addMusic()">Add Music</button><br><br>
+  	<textarea rows="1" cols="100" class='animated' name="postBox" ng-model="myShows" placeholder="Enter Shows"></textarea>
+  	<button type="button" class="btn btn-primary" ng-click="addShows()">Add Shows</button><br><br>
+  	<textarea rows="1" cols="100" class='animated' name="postBox" ng-model="mySports" placeholder="Enter Sports "></textarea>
+  	<button type="button" class="btn btn-primary" ng-click="addSports()">Add Sports</button><br><br>
+  	
+  </div>
+  
+  	<div ng-show="showAddedMusic">
+  	<p> {{myMusic}} has been added to your Music list. </p>
+  	</div>
+  	<div ng-show="showAddedShows">
+  	<p> {{myShows}} has been added to your Shows. </p>
+  	</div>
+  	<div ng-show="showAddedSports">
+  	<p> {{mySports}} has been added to your Sports. </p>
+  	</div>
+  	
+  </div>
+ 
+
+</div>
+
+<script src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js></script>
+<script src ="/controller/homeController.js"></script>
+ </body>
+</html>
+

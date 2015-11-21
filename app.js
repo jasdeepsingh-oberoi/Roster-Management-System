@@ -6,6 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   ,landingPage = require('./routes/landingPage')
+  ,home = require('./routes/home')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
@@ -42,6 +43,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', landingPage.load);
 app.post('/login', landingPage.login);
+app.get('/home', home.load);
+app.get('/fetchTasks', task.fetchTask);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Basic Usage</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     
     
@@ -18,12 +18,12 @@
 
   <body>
 
-    <div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp">
+    <div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp" >
 
-  <md-content md-theme="docs-dark" layout-padding="" layout="row" layout-sm="column">
+  <md-content md-theme="docs-dark" layout-padding="" layout="row" layout-sm="column" >
     <md-input-container>
       <label>Email</label>
-      <input ng-model="user.email" type="email">
+      <input ng-model="user.email" type="email" >
     </md-input-container>
     <md-input-container>
 	  <label> Password </label>
@@ -34,6 +34,7 @@
 	</md-input-container>
   </md-content>
 
+<!--
   <md-content layout-padding="">
     <form name="userForm">
 
@@ -102,6 +103,7 @@
         <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
       </md-input-container>
 
+-->
 
     </form>
   </md-content>
