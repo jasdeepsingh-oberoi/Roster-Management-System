@@ -46,6 +46,11 @@ app.get('/', landingPage.load);
 app.post('/login', landingPage.login);
 app.get('/home', home.load);
 app.get('/fetchTasks', task.fetchTask);
+app.get('/fetchName', home.fetchName);
+
+
+//Logout
+app.get('/logout',home.logout);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

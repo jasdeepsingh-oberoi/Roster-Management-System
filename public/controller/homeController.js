@@ -9,6 +9,14 @@ angular
     };
     
     
+    	$http.get('/fetchName').success(function(response){
+    		var name = response;
+    		console.log("I am back in name controller");
+    		console.log(name);
+    		$scope.firstName=response[0].firstName;
+    		$scope.lastName=response[0].lastName;
+    	});
+    
     $scope.tasks = function(){
     	$http.get('/fetchTasks').success(function(response){
     		console.log(response);

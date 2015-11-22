@@ -46,8 +46,6 @@ function login(req,res){
 		}
 	},checkUser);
 }
- 
-      
 
 
 exports.login = login;
