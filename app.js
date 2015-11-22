@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   ,landingPage = require('./routes/landingPage')
   ,home = require('./routes/home')
+  ,polls = require('./routes/polls')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
@@ -47,6 +48,14 @@ app.post('/login', landingPage.login);
 app.get('/home', home.load);
 app.get('/fetchTasks', task.fetchTask);
 app.get('/fetchName', home.fetchName);
+
+//Loading Existing Polls for the Group
+app.get('/polls', polls.existingPolls);
+app.get('/pollsPageLoad', polls.pollsPageLoad);
+
+//Opening individual Polls
+app.get('/polls/:name', polls.pollDetails);
+
 
 
 //Logout

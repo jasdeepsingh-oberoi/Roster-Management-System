@@ -1,6 +1,6 @@
 angular
   .module('MyApp')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
+  .controller('pollsCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
 	  
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -9,30 +9,45 @@ angular
     };
     
     
-    	$http.get('/fetchName').success(function(response){
-    		var name = response;
-    		console.log("I am back in name controller");
-    		console.log(name);
-    		$scope.firstName=response[0].firstName;
-    		$scope.lastName=response[0].lastName;
-    	});
+//    	$http.get('/fetchName').success(function(response){
+//    		var name = response;
+//    		console.log("I am back in name controller");
+//    		console.log(name);
+//    		$scope.firstName=response[0].firstName;
+//    		$scope.lastName=response[0].lastName;
+//    	});
+    	
+    $scope.pollQuestions = true;
+    
     
     	
-    	$scope.pollsPage = function(){
+    	$http.get('/polls').success(function(response){
+    		console.log("Free load");
+    		$scope.question=response;
+    		console.log(response);
+    	});
+    
+    	/*console.log("Hi from polls con")
+    	$http.get('/fetchPollsQue').success(function(response){
+    		var polls = response;
+    		console.log("I am back in Polls Controller");
+    		console.log(polls);
+    		
+    		$scope.question=response
+    		
+    	});*/
+    
+   
+    	$scope.polls = function(){
         	console.log("Confirmed into polls controller!");
-        	window.location = '/pollsPageLoad';
-    		/*$http.get('/pollsPageLoad').success(function(response){
-        		//window.location = '/pollsPageLoad';
+    		$http.get('/polls').success(function(response){
+    			$scope.question=response;
         		console.log(response);
-        	});*/
+        	});
         }
     	
     	
-    $scope.tasks = function(){
-    	$http.get('/fetchTasks').success(function(response){
-    		console.log(response);
-    	});
-    }
+    	
     
     /**
      * Supplies a function that will continue to operate until the

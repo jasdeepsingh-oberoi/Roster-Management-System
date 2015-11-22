@@ -17,7 +17,7 @@
 
   <body>
 
-    <div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
+    <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
 
   <section layout="row" flex="">
 		
@@ -26,6 +26,9 @@
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools" align ="center">&nbsp Welcome! &nbsp{{firstName}} {{lastName}}</h1>
       </md-toolbar>
+      
+      
+      
       <md-content layout-padding="" ng-controller="LeftCtrl">
         <md-button ng-click="close()" class="md-primary" hide-gt-md="">
           Close Sidenav Left
@@ -33,11 +36,9 @@
         
         
       </md-content>
-
-
 	<md-button class="md-raised md-primary" ng-click="tasks()">Tasks</md-button>
     <md-button class="md-raised md-primary">Shopping List</md-button>
-    <md-button class="md-raised md-primary" ng-click="pollsPage()">Polls</md-button>
+    <md-button class="md-raised md-primary"ng-click ="polls()">Polls</md-button>
     <md-button class="md-raised md-primary">Chat</md-button>
     <md-button class="md-raised md-warn" ng-href="/logout">Logout</md-button>
     
@@ -47,6 +48,28 @@
     <md-content flex="" layout-padding="">
 
       <div layout="column" layout-fill="" layout-align="top center">
+        
+        <h1>Hi There</h1>
+      
+      
+      
+      
+      
+      
+        <div ng-show="pollQuestions">
+        <table>
+    	<tbody>
+      	<tr ng-repeat="que in question">
+      
+      
+      <a class="test" id='{{que.question}}' href="">{{que.question}}</a>
+      	<td><a class="test" id='{{que.question}}' href="">{{que.question}}</a></td>	
+      	
+      	</tr>
+      
+    	</tbody>
+  		</table>
+        </div>
         
       </div>
 
@@ -66,7 +89,16 @@
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js'></script>
 <script src='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.js'></script>
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script>
-<script src= "/controller/homeController.js"></script>
+<script src= "/controller/pollsController.js"></script>
+ 
+<script>
+	var x = document.getElementsByClassName("test");
+	for(i=0;i<x.length;i++){
+		var xx = x[i].innerHTML;
+		var yy = '/polls/'+xx.replace(' ', '-');
+		x[i].href= yy;
+	}
+</script> 
     
 </body>
 </html>
