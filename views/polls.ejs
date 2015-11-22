@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>Basic Usage</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    
-    
-    
-
-    
-
-<link rel='stylesheet prefetch' href='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.css'> 
+	<link rel='stylesheet prefetch' href='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.css'> 
+	
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	
 	
   </head>
@@ -47,32 +44,36 @@
 
     <md-content flex="" layout-padding="">
 
-      <div layout="column" layout-fill="" layout-align="top center">
-        
-        <h1>Hi There</h1>
-      
-      
-      
-      
-      
-      
-        <div ng-show="pollQuestions">
-        <table>
-    	<tbody>
-      	<tr ng-repeat="que in question">
-      
-      
-      <a class="test" id='{{que.question}}' href="">{{que.question}}</a>
-      	<td><a class="test" id='{{que.question}}' href="">{{que.question}}</a></td>	
-      	
-      	</tr>
-      
-    	</tbody>
-  		</table>
-        </div>
-        
-      </div>
+	<h1 align="center">Polls Page</h1>
 
+    <div layout="column" layout-fill="" layout-align="top center">
+      
+   <div class="container" ng-show="pollQuestions">
+  <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      
+        <tr ng-repeat="que in question">
+        
+      	<td>{{que.question}}</td>
+     	<td><md-button class="md-raised"><a href="polls/{{que.question}}">Select</a></md-button></td>
+      </tr>
+    
+    
+    </tbody>
+  </table>
+  </div>
+</div>
+      
+      
+       
       <div flex=""></div>
 
     </md-content>

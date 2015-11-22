@@ -32,21 +32,30 @@ var session = require('client-sessions');
 					console.log("sending result back to polls controller");
 					console.log(result);
 					res.send(result);
+				
 				}
 			},existingPollQue);
 		}
 
 		
-//Opening individual Polls
+//Opening individual Poll Details
 
 		exports.pollDetails = function(req, res){
 			var emailId = req.session.emailId;
 			var groupId = req.session.groupId;
 			    groupId = "1";
+			
+			var atrName = req.params.name;
+			console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
+			var pollName = atrName.replace(/-/g, ' ');
+			console.log(pollName);
+			    
+			    
 			    
 			console.log("Polls page for " + emailId);
 			
-			var existingPollQue = "select * from roster.pollquestion where pollquestion.groupId = '"+groupId+"'";
+			var existingPollQue = "select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and question like '"+atrName+"%"+"' "  
+				
 			
 			mysql.fetchData(function(err,result){
 				if(err){
