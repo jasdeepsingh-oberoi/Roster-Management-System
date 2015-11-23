@@ -1,126 +1,204 @@
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    
-    
-    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.css'>
-<link rel='stylesheet prefetch' href='http://localhost:8080/docs.css'>
+    <html class="login-content" data-ng-app="materialAdmin">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
 
-        <link rel="stylesheet" href="css/style.css">
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
 
-    
-    
-    
-  </head>
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+    </head>
 
-  <body>
+    <body class="login-content" data-ng-controller="loginCtrl as lctrl">
 
-    <div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage" ng-app="MyApp" >
 
-  <md-content md-theme="docs-dark" layout-padding="" layout="row" layout-sm="column" >
-    <md-input-container>
-      <label>Email</label>
-      <input ng-model="user.email" type="email" >
-    </md-input-container>
-    <md-input-container>
-	  <label> Password </label>
-	  <input type="password" ng-model="user.password" aria-label="password" required/>
-	</md-input-container>
-	<md-input-container>
-	<md-button class="md-raised md-primary" ng-click = "login()">Login</md-button>
-	</md-input-container>
-  </md-content>
-
-<!--
-  <md-content layout-padding="">
-    <form name="userForm">
-
-      <div layout="" layout-sm="column">
-        <md-input-container flex="">
-          <label>Company (Disabled)</label>
-          <input ng-model="user.company" disabled="">
-        </md-input-container>
-
-        <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
-      </div>
-
-      <div layout="" layout-sm="column">
-        <md-input-container flex="">
-          <label>First name</label>
-          <input ng-model="user.firstName">
-        </md-input-container>
-        <md-input-container flex="">
-          <label>Last Name</label>
-          <input ng-model="theMax">
-        </md-input-container>
-      </div>
-
-      <md-input-container class="md-block">
-        <label>Address</label>
-        <input ng-model="user.address">
-      </md-input-container>
-
-      <md-input-container md-no-float="" class="md-block">
-        <input ng-model="user.address2" placeholder="Address 2">
-      </md-input-container>
-
-      <div layout="" layout-sm="column">
-        <md-input-container flex="">
-          <label>City</label>
-          <input ng-model="user.city">
-        </md-input-container>
-
-        <md-input-container flex="">
-          <label>State</label>
-          <md-select ng-model="user.state">
-            <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-              {{state.abbrev}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-
-        <md-input-container flex="">
-          <label>Postal Code</label>
-          <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-          <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
-            <div ng-message="required" class="my-message">You must supply a postal code.</div>
-            <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-              code.
+        <!-- Login -->
+        <!--<div class="lc-block" id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1">-->
+            <div class="lc-block" id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Username" ng-model="emailId">
+                    <!--<input type="text" placeholder="Username" ng-model="email">-->
+                </div>
             </div>
-            <div ng-message="md-maxlength" class="my-message">
-              Don't use the long version silly...we don't need to be that specific...
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" ng-model="password" placeholder="Password">
+                </div>
             </div>
-          </div>
-        </md-input-container>
-      </div>
 
-      <md-input-container class="md-block">
-        <label>Biography</label>
-        <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-      </md-input-container>
+            <div class="clearfix"></div>
 
--->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Keep me signed in
+                </label>
+            </div>
 
-    </form>
-  </md-content>
+            <a class="btn btn-login btn-danger btn-float" ng-click="login()"><i class="zmdi zmdi-arrow-forward"></i></a>
 
-</div>
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js'></script>
-<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js'></script>
-<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js'></script>
-<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js'></script>
-<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.min.js'></script>
-<script src='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script>
+            <ul class="login-navigation">
+                <li data-block="#l-register" class="bgm-red" data-ng-click="lctrl.login = 0; lctrl.register = 1">Register</li>
+                <li data-block="#l-forget-password" class="bgm-orange" data-ng-click="lctrl.login = 0; lctrl.forgot = 1">Forgot Password?</li>
+            </ul>
+        </div>
 
-<script src ="/controller/landingPageController.js"></script>
+        <!-- Register -->
+        <div class="lc-block" id="l-register" data-ng-class="{ 'toggled': lctrl.register === 1 }" data-ng-if="lctrl.register === 1">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Username">   
+                </div>
+            </div>
 
-    
-    
-    
-  </body>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Email Address">
+                </div>
+            </div>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Accept the license agreement
+                </label>
+            </div>
+
+            <a href="" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+
+            <ul class="login-navigation">
+                <li data-block="#l-login" class="bgm-green" data-ng-click="lctrl.register = 0; lctrl.login = 1">Login</li>
+                <li data-block="#l-forget-password" class="bgm-orange" data-ng-click="lctrl.register = 0; lctrl.forgot = 1">Forgot Password?</li>
+            </ul>
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="lc-block" id="l-forget-password" data-ng-class="{ 'toggled': lctrl.forgot === 1 }" data-ng-if="lctrl.forgot === 1">
+            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Email Address">
+                </div>
+            </div>
+
+            <a href="" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+
+            <ul class="login-navigation">
+                <li data-block="#l-login" class="bgm-green" data-ng-click="lctrl.forgot = 0; lctrl.login = 1">Login</li>
+                <li data-block="#l-register" class="bgm-red" data-ng-click="lctrl.forgot = 0; lctrl.register = 1">Register</li>
+            </ul>
+        </div>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+
+
+        <!-- Core -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Angular -->
+        <script src="vendors/bower_components/angular/angular.min.js"></script>
+        <script src="vendors/bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="vendors/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="vendors/bower_components/angular-resource/angular-resource.min.js"></script>
+
+        
+        <!-- Angular Modules -->
+        <script src="vendors/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="vendors/bower_components/angular-loading-bar/src/loading-bar.js"></script>
+        <script src="vendors/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+        <script src="vendors/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+        <!-- Common Vendors -->
+        <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bower_components/angular-nouislider/src/nouislider.min.js"></script>
+        <script src="vendors/bower_components/ng-table/dist/ng-table.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+                
+        <!-- App level -->
+        <script src="js/app.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/controllers/main.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/templates.js"></script>
+        <script src="js/controllers/ui-bootstrap.js"></script>
+        <script src="js/controllers/table.js"></script>
+
+
+        <!-- Template Modules -->
+        <script src="js/modules/template.js"></script>
+        <script src="js/modules/ui.js"></script>
+        <script src="js/modules/form.js"></script>
+        
+    </body>
 </html>

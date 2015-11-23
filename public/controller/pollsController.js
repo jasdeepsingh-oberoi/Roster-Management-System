@@ -1,6 +1,6 @@
 angular
   .module('MyApp')
-  .controller('pollsCtrl', function ($scope, $timeout, $mdSidenav, $log, $http) {
+  .controller('pollsCtrl', function ($scope, $timeout, $mdSidenav, $log, $http, $compile) {
 	  
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -27,17 +27,15 @@ angular
     		console.log(response);
     	});
     
-    	/*console.log("Hi from polls con")
-    	$http.get('/fetchPollsQue').success(function(response){
-    		var polls = response;
-    		console.log("I am back in Polls Controller");
-    		console.log(polls);
-    		
-    		$scope.question=response
-    		
-    	});*/
+    	$http.get('/polls/:name').success(function(response){
+    		console.log("Free load");
+    		$scope.answer=response;
+    		console.log(response);
+    	});
+    	
+    	
     
-   
+    	// Polls Sidenav Function
     	$scope.polls = function(){
         	console.log("Confirmed into polls controller!");
     		$http.get('/polls').success(function(response){
@@ -47,7 +45,7 @@ angular
         }
     	
     	
-    	
+    
     
     /**
      * Supplies a function that will continue to operate until the

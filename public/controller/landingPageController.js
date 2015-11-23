@@ -12,6 +12,7 @@ angular.module('MyApp').controller('DemoCtrl', function($scope, $http) {
       postalCode: '94043'
     };
     
+    /*
     $scope.login = function(){
     	console.log("Hi i am in controller");
     	console.log($scope.user.email);
@@ -31,6 +32,8 @@ angular.module('MyApp').controller('DemoCtrl', function($scope, $http) {
 		});
 
 	};
+
+     */
 
     $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
     'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +

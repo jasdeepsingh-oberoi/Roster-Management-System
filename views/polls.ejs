@@ -64,8 +64,24 @@
         
       	<td>{{que.question}}</td>
      	<td><md-button class="md-raised"><a href="polls/{{que.question}}">Select</a></md-button></td>
-      </tr>
+     	
+     	
+      
     
+ <script>
+ 
+ 	var x = document.getElementsByClassName("test");
+	console.log(x);
+	
+	for(i=0;i<x.length;i++){
+		var xx = x[i].innerHTML;
+		var yy = '/polls/'+xx.replace(' ', '-');
+		console.log(xx);
+		x[i].href= yy;
+	
+	}
+</script> 
+    </tr>
     
     </tbody>
   </table>
@@ -92,14 +108,7 @@
 <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js'></script>
 <script src= "/controller/pollsController.js"></script>
  
-<script>
-	var x = document.getElementsByClassName("test");
-	for(i=0;i<x.length;i++){
-		var xx = x[i].innerHTML;
-		var yy = '/polls/'+xx.replace(' ', '-');
-		x[i].href= yy;
-	}
-</script> 
+
     
 </body>
 </html>

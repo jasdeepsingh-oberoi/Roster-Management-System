@@ -40,6 +40,23 @@ var session = require('client-sessions');
 		
 //Opening individual Poll Details
 
+		exports.pollsDetailsLoad = function(req,res){
+		
+			var emailId = req.session.emailId;
+			var groupId = req.session.groupId;
+			    groupId = "1";
+			
+			var atrName = req.body.name;
+			console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
+			
+			var pollName = atrName.replace(/-/g, ' ');
+			
+			console.log("Loading Poll Details page");
+			
+		
+		}
+		
+		
 		exports.pollDetails = function(req, res){
 			var emailId = req.session.emailId;
 			var groupId = req.session.groupId;
@@ -54,7 +71,7 @@ var session = require('client-sessions');
 			    
 			console.log("Polls page for " + emailId);
 			
-			var existingPollQue = "select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and question like '"+atrName+"%"+"' "  
+			var existingPollQue = "select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and question like '"+pollName+"%"+"' "  
 				
 			
 			mysql.fetchData(function(err,result){
