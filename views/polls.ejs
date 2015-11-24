@@ -8,6 +8,20 @@
 	
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+
 	
 	
   </head>
@@ -54,7 +68,8 @@
     <thead>
       <tr>
         <th>Question</th>
-        <th>Select</th>
+        <th>Respond</th>
+        <th>Results</th>
       </tr>
     </thead>
     
@@ -63,11 +78,45 @@
         <tr ng-repeat="que in question">
         
       	<td>{{que.question}}</td>
-     	<td><md-button class="md-raised"><a href="polls/{{que.question}}">Select</a></md-button></td>
+      	<td><a href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose">
+            <i class="zmdi zmdi-plus"></i>
+        </a></td>
+     	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
      	
-     	
-      
+     </tbody>	
+      </table>
+    </div>
     
+      <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Choice</th>
+        <th>Response</th>
+      </tr>
+    </thead>
+    
+    
+    <tbody>
+      
+        <tr ng-repeat="resp in pollResponses">
+        
+      	<td>{{resp.firstName}} {{resp.lastName}}</td>
+      	<td>{{resp.responseChoice}}</td>
+      	<td>{{resp.response}}</td>
+    
+    </tbody>
+    </table>
+     	
+    </div>
+
+ 
+
+
+
+
+
  <script>
  
  	var x = document.getElementsByClassName("test");

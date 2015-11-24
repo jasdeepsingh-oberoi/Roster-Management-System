@@ -19,7 +19,7 @@ angular
     	
     $scope.pollQuestions = true;
     
-    
+    	
     	
     	$http.get('/polls').success(function(response){
     		console.log("Free load");
@@ -43,6 +43,16 @@ angular
         		console.log(response);
         	});
         }
+    	
+    	//This function will fetch poll details
+    	$scope.polldetail = function(poll_Id){
+    		console.log("in controller " + poll_Id);
+    		$http.post('/pollDetails',{poll_Id:poll_Id, id:5}).success(function(response){
+    			console.log(response);
+    			$scope.pollResponses = response;
+    			console.log(pollResponses);
+    		});
+    	}
     	
     	
     

@@ -54,7 +54,7 @@ app.get('/polls', polls.existingPolls);
 app.get('/pollsPageLoad', polls.pollsPageLoad);
 
 //Opening individual Polls
-app.get('/polls/:name', polls.pollDetails);
+app.post('/pollDetails', polls.pollDetails);
 
 
 

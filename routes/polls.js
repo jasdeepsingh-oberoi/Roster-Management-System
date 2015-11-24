@@ -13,7 +13,8 @@ var session = require('client-sessions');
 	exports.pollsPageLoad = function(req,res){
 			console.log("I will load polls page");
 			res.render('polls');
-		}
+	
+	}
 
 		exports.existingPolls = function(req, res){
 			var emailId = req.session.emailId;
@@ -46,10 +47,11 @@ var session = require('client-sessions');
 			var groupId = req.session.groupId;
 			    groupId = "1";
 			
-			var atrName = req.body.name;
-			console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
+			var poll_Id = req.body.poll_Id;
 			
-			var pollName = atrName.replace(/-/g, ' ');
+			console.log("The username is: "+emailId+" and the Poll id is: "+poll_Id);
+			
+			//var pollName = atrName.replace(/-/g, ' ');
 			
 			console.log("Loading Poll Details page");
 			
@@ -62,16 +64,19 @@ var session = require('client-sessions');
 			var groupId = req.session.groupId;
 			    groupId = "1";
 			
-			var atrName = req.params.name;
-			console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
-			var pollName = atrName.replace(/-/g, ' ');
-			console.log(pollName);
-			    
+			//var atrName = req.params.name;
+			//console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
+			//var pollName = atrName.replace(/-/g, ' ');
+			//console.log(pollName);
+			var poll_Id = req.body.poll_Id;
+			var id = req.body.id;
+			console.log(id)
+			console.log( "and the Poll id is: "+poll_Id);    
 			    
 			    
 			console.log("Polls page for " + emailId);
 			
-			var existingPollQue = "select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and question like '"+pollName+"%"+"' "  
+			var existingPollDetails = "select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and poll_Id = '"+poll_Id+"' "  
 				
 			
 			mysql.fetchData(function(err,result){
@@ -83,7 +88,7 @@ var session = require('client-sessions');
 					console.log(result);
 					res.send(result);
 				}
-			},existingPollQue);
+			},existingPollDetails);
 		}	
 		
 		
