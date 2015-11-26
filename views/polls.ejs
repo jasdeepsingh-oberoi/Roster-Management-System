@@ -87,8 +87,9 @@
       </table>
     </div>
     
-      <div class="table-responsive">          
+  <div class="table-responsive" ng-show=" pollResponses.length >= 0" >          
   <table class="table">
+    
     <thead>
       <tr>
         <th>Name</th>
@@ -101,7 +102,6 @@
     <tbody>
       
         <tr ng-repeat="resp in pollResponses">
-        
       	<td>{{resp.firstName}} {{resp.lastName}}</td>
       	<td>{{resp.responseChoice}}</td>
       	<td>{{resp.response}}</td>

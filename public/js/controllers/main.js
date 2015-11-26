@@ -290,7 +290,7 @@ materialAdmin
         	
         	console.log($scope.emailId);
         	console.log($scope.password);
-    		$http.post('/login',{emailId : $scope.emailId, password : $scope.password}).success(function(response){
+    		$http.post('/login',{emailId:$scope.emailId, password : $scope.password}).success(function(response){
     			var result = response;
     			console.log("Hi i am back in controller");
     			console.log(result);
