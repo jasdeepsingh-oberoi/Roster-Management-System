@@ -87,8 +87,8 @@
     <thead>
       <tr>
         <th>Question</th>
-        <th>Respond</th>
         <th>Results</th>
+        <th>Respond</th>
       </tr>
     </thead>
     
@@ -97,9 +97,9 @@
         <tr ng-repeat="que in question">
         
       	<td>{{que.question}}</td>
-      	<td><a href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose"><i class="zmdi zmdi-plus"></i></a></td>
+      	
      	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
-
+		<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">Respond</a></md-button></td>
      </tbody>	
       </table>
     </div>
