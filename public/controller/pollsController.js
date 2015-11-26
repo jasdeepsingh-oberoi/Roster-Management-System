@@ -17,12 +17,30 @@ angular
 //    		$scope.lastName=response[0].lastName;
 //    	});
     	
-    $scope.pollQuestions = true;
+    	
+    	//This function will display the form to add new poll question
+    	$scope.poll = false;
+    	$scope.addPoll = function(){
+        	console.log("Allowing to create new poll now");
+    		$http.get('/polls').success(function(response){
+    			$scope.poll=true;
+        		
+        	});
+        }
     
+    	//This function will submit new poll question
+    	$scope.createPoll = function(question){
+        	console.log("Adding a new poll question");
+    		$http.post('/polls/create',{question:question, id:5}).success(function(response){
+    			console.log("Poll question sent to SQL");
+    			window.location = '/pollsPageLoad';
+        	});
+        }
+
     	
-    	
+    	// This function will load all the poll questions
+    	$scope.pollQuestions = true;
     	$http.get('/polls').success(function(response){
-    		console.log("Free load");
     		$scope.question=response;
     		console.log(response);
     	});
@@ -39,8 +57,9 @@ angular
     	$scope.polls = function(){
         	console.log("Confirmed into polls controller!");
     		$http.get('/polls').success(function(response){
-    			$scope.question=response;
-        		console.log(response);
+    			window.location = '/pollsPageLoad';
+    			//$scope.question=response;
+        		//console.log(response);
         	});
         }
     	
@@ -50,7 +69,7 @@ angular
     		$http.post('/pollDetails',{poll_Id:poll_Id, id:5}).success(function(response){
     			console.log(response);
     			$scope.pollResponses = response;
-    			console.log(pollResponses);
+    			
     		});
     	}
     	

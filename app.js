@@ -53,6 +53,9 @@ app.get('/fetchName', home.fetchName);
 app.get('/polls', polls.existingPolls);
 app.get('/pollsPageLoad', polls.pollsPageLoad);
 
+// Create new poll question
+app.post('/polls/create', polls.createPoll);
+
 //Opening individual Polls
 app.post('/pollDetails', polls.pollDetails);
 

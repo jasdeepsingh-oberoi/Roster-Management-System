@@ -28,7 +28,7 @@
 
   <body>
 
-    <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
+  <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
 
   <section layout="row" flex="">
 		
@@ -37,7 +37,6 @@
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools" align ="center">&nbsp Welcome! &nbsp{{firstName}} {{lastName}}</h1>
       </md-toolbar>
-      
       
       
       <md-content layout-padding="" ng-controller="LeftCtrl">
@@ -59,10 +58,30 @@
     <md-content flex="" layout-padding="">
 
 	<h1 align="center">Polls Page</h1>
+	
+	<div layout="column" layout-fill="" layout-align="top left">
+	<ng-button href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose" ng-click="addPoll()"><i class="zmdi zmdi-plus"></i><md-tooltip md-direction="right">Create Poll</md-tooltip></n>
+	
+	</div>
+<div>
+<br><br>
+</div>
 
-    <div layout="column" layout-fill="" layout-align="top center">
-      
-   <div class="container" ng-show="pollQuestions">
+
+<div ng-show="poll">
+<md-content layout-padding class="autoScroll">
+    <md-input-container class="md-icon-float md-block">  
+     <input ng-model="newpoll.question" placeholder="Enter poll question here" type="text">
+     <md-button class="md-raised"><a href="" ng-click="createPoll(newpoll.question)">Ask</a></md-button>
+    </md-input-container>
+    
+  </md-content>
+</div>
+
+
+  <div layout="column" layout-fill="" layout-align="top center">
+    
+  <div class="container" ng-show="pollQuestions">
   <div class="table-responsive">          
   <table class="table">
     <thead>
@@ -78,16 +97,14 @@
         <tr ng-repeat="que in question">
         
       	<td>{{que.question}}</td>
-      	<td><a href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose">
-            <i class="zmdi zmdi-plus"></i>
-        </a></td>
+      	<td><a href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose"><i class="zmdi zmdi-plus"></i></a></td>
      	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
-     	
+
      </tbody>	
       </table>
     </div>
     
-  <div class="table-responsive" ng-show=" pollResponses.length >= 0" >          
+  <div class="table-responsive"  ng-show=" pollResponses.length >= 0" >          
   <table class="table">
     
     <thead>
@@ -112,11 +129,6 @@
     </div>
 
  
-
-
-
-
-
  <script>
  
  	var x = document.getElementsByClassName("test");

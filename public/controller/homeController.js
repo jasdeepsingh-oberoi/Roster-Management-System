@@ -21,11 +21,10 @@ angular
     	$scope.pollsPage = function(){
         	console.log("Confirmed into polls controller!");
         	window.location = '/pollsPageLoad';
-    		/*$http.get('/pollsPageLoad').success(function(response){
-        		//window.location = '/pollsPageLoad';
-        		console.log(response);
-        	});*/
+    		
         }
+    	
+    	
     	
     	
     $scope.tasks = function(){

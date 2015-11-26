@@ -19,11 +19,11 @@ var session = require('client-sessions');
 		exports.existingPolls = function(req, res){
 			var emailId = req.session.emailId;
 			var groupId = req.session.groupId;
-			    groupId = "1";
+			    groupId = "2";
 			    
 			console.log("Polls page for " + emailId);
 			
-			var existingPollQue = "select * from roster.pollquestion where pollquestion.groupId = '"+groupId+"'";
+			var existingPollQue = "select * from roster.pollquestion where pollquestion.groupId = '"+groupId+"' ";
 			
 			mysql.fetchData(function(err,result){
 				if(err){
@@ -38,6 +38,37 @@ var session = require('client-sessions');
 			},existingPollQue);
 		}
 
+// Creating New Poll Question		
+		
+		exports.createPoll = function(req, res){
+			var emailId = req.session.emailId;
+			var groupId = req.session.groupId;
+			var question = req.body.question;
+			    groupId = "2";
+			    
+			    
+			console.log("Create poll for " + emailId + "under group " + groupId );
+			
+			var createPollQuestion = " INSERT INTO roster.pollquestion (`groupId`, `question`) VALUES ('"+groupId+"', '"+question+"'); " 
+				
+				//"select * from roster.pollresponse natural join roster.userinfo natural join roster.pollquestion where pollresponse.groupId = '"+groupId+"' and poll_Id = '"+poll_Id+"' "  
+				
+			
+			mysql.fetchData(function(err,result){
+				if(err){
+					console.log("error occured");
+				}
+				else{
+					console.log("sending result back to polls controller");
+					console.log(result);
+					res.redirect('/pollsPageLoad');
+					
+				}
+			},createPollQuestion);
+		}	
+		
+		
+		
 		
 //Opening individual Poll Details
 
@@ -57,17 +88,15 @@ var session = require('client-sessions');
 			
 		
 		}
+	
 		
-		
+		// Load Poll Details
 		exports.pollDetails = function(req, res){
 			var emailId = req.session.emailId;
 			var groupId = req.session.groupId;
-			    groupId = "1";
+			    groupId = "2";
 			
-			//var atrName = req.params.name;
-			//console.log("The username is: "+emailId+" and the Poll Name is: "+atrName);
-			//var pollName = atrName.replace(/-/g, ' ');
-			//console.log(pollName);
+			
 			var poll_Id = req.body.poll_Id;
 			var id = req.body.id;
 			console.log(id)
@@ -86,6 +115,7 @@ var session = require('client-sessions');
 				else{
 					console.log("sending result back to polls controller");
 					console.log(result);
+					
 					res.send(result);
 				}
 			},existingPollDetails);

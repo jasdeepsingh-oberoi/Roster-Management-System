@@ -285,8 +285,8 @@ materialAdmin
         //Login
         $scope.login = function(){
         	console.log("Hi i am in controller");
-        	//$scope.emailId = "ajeet@gmail.com";
-        	//$scope.password = "ajeet";
+        	
+        	
         	
         	console.log($scope.emailId);
         	console.log($scope.password);
