@@ -30,7 +30,7 @@
 
   <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
 
-  <section layout="row" flex="">
+  <section layout="row" >
 		
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 
@@ -99,18 +99,18 @@
       	<td>{{que.question}}</td>
       	
      	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
-		<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">Respond</a></md-button></td>
+		<td><md-button class="md-raised"><a href="" ng-click="pollResponse(que.poll_Id)">Respond</a></md-button></td>
      </tbody>	
       </table>
     </div>
     
-  <div class="table-responsive"  ng-show=" pollResponses.length >= 0" >          
+  <div class="table-responsive"  ng-show=" pollResponses.length > 0" >          
   <table class="table">
     
     <thead>
       <tr>
         <th>Name</th>
-        <th>Choice</th>
+    <!--<th>Choice</th>-->
         <th>Response</th>
       </tr>
     </thead>
@@ -120,14 +120,42 @@
       
         <tr ng-repeat="resp in pollResponses">
       	<td>{{resp.firstName}} {{resp.lastName}}</td>
-      	<td>{{resp.responseChoice}}</td>
+    <!--<td>{{resp.responseChoice}}</td>-->
       	<td>{{resp.response}}</td>
     
     </tbody>
     </table>
      	
     </div>
+    
+    
 
+ <div class="table-responsive" ng-show="pollResp" >          
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th>Name</th>
+    <!--<th>Choice</th>-->
+        <th>Response</th>
+      </tr>
+    </thead>
+    
+    
+    <tbody>
+      
+        <tr ng-repeat="resp in pollResponses">
+      	<td>{{resp.firstName}} {{resp.lastName}}</td>
+    <!--<td>{{resp.responseChoice}}</td>-->
+      	<td>{{resp.response}}</td>
+    
+    </tbody>
+    </table>
+     	
+    </div>
+ 
+ 
+ 
  
  <script>
  
@@ -148,8 +176,6 @@
   </table>
   </div>
 </div>
-      
-      
        
       <div flex=""></div>
 
