@@ -6,7 +6,7 @@ var ejs = require("ejs");
 var mysql = require('./mysql');
 var app = require('../app');
 var session = require('client-sessions');
-
+var poll_Id;
 
 
 //Loading Existing Polls for the Group
@@ -78,7 +78,7 @@ var session = require('client-sessions');
 			var groupId = req.session.groupId;
 			    groupId = "1";
 			
-			var poll_Id = req.body.poll_Id;
+			 poll_Id = req.body.poll_Id;
 			
 			console.log("The username is: "+emailId+" and the Poll id is: "+poll_Id);
 			
@@ -97,7 +97,7 @@ var session = require('client-sessions');
 			    groupId = "2";
 			
 			
-			var poll_Id = req.body.poll_Id;
+			poll_Id = req.body.poll_Id;
 			var id = req.body.id;
 			console.log(id)
 			console.log( "and the Poll id is: "+poll_Id);    
@@ -120,6 +120,71 @@ var session = require('client-sessions');
 				}
 			},existingPollDetails);
 		}	
+		
+		
+//Get Poll's Distinct Choices		
+		exports.pollAnswers = function(req, res){
+			var emailId = req.session.emailId;
+			var groupId = req.session.groupId;
+			    groupId = "2";
+			
+			
+			poll_Id = req.body.poll_Id;
+			var id = req.body.id;
+			console.log(id)
+			console.log( "and the Poll id is: "+poll_Id);    
+			    
+			    
+			console.log("Polls page for " + emailId);
+			
+			var pollDistinctAnswers = " select distinct(response) from roster.pollresponse where poll_Id='"+poll_Id+"' ORDER BY response "; 
+			
+			mysql.fetchData(function(err,result){
+				if(err){
+					console.log("error occured");
+				}
+				else{
+					console.log("sending unique poll options back to polls controller");
+					console.log(result);
+					
+					res.send(result);
+				}
+			},pollDistinctAnswers);
+		}			
+		
+		
+//Get Poll's Distinct Choices		
+		exports.pollAnswerSelect = function(req, res){
+			var emailId = req.session.emailId;
+			var groupId = req.session.groupId;
+			    groupId = "2";
+			
+			
+			
+			var id = req.body.id;
+			var response = req.body.response;
+			console.log(id)
+			console.log( "and the Poll id is: "+poll_Id + " and response " + response);    
+			    
+			    
+			console.log("Polls page for " + emailId);
+			
+			var pollSelectedAnswer = " INSERT INTO `roster`.`pollresponse` (`poll_Id`, `groupId`, `response`, `emailId`) VALUES ('"+poll_Id+"', '"+groupId+"', '"+response+"', '"+emailId+"'); ";
+				
+				 
+			
+			mysql.fetchData(function(err,result){
+				if(err){
+					console.log("error occured");
+				}
+				else{
+					console.log("sending poll opinion to db and returning back to polls controller");
+					console.log(result);
+					
+					res.send(result);
+				}
+			},pollSelectedAnswer);
+		}			
 		
 		
 		

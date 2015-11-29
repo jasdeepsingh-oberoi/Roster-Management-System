@@ -63,13 +63,13 @@ angular
         	});
         }
     	
+    	
     	//This function will fetch poll details
     	$scope.polldetail = function(poll_Id){
     		console.log("in controller " + poll_Id);
     		$http.post('/pollDetails',{poll_Id:poll_Id, id:5}).success(function(response){
     			console.log(response);
     			$scope.pollResponses = response;
-    			
     		});
     	}
     	
@@ -87,47 +87,30 @@ angular
     	
     	
     		
-    	//Radio Button for 
-    	  $scope.data = {
-    		      group1 : 'Banana',
-    		      group2 : '2',
-    		      group3 : 'avatar-1'
-    		    };
-    		    $scope.avatarData = [{
-    		        id: "avatars:svg-1",
-    		        title: 'avatar 1',
-    		        value: 'avatar-1'
-    		      },{
-    		        id: "avatars:svg-2",
-    		        title: 'avatar 2',
-    		        value: 'avatar-2'
-    		      },{
-    		        id: "avatars:svg-3",
-    		        title: 'avatar 3',
-    		        value: 'avatar-3'
-    		    }];
-    		    $scope.radioData = [
-    		      { label: '1', value: 1 },
-    		      { label: '2', value: 2 },
-    		      { label: '3', value: '3', isDisabled: true },
-    		      { label: '4', value: '4' }
-    		    ];
-    		    $scope.submit = function() {
-    		      alert('submit');
-    		    };
-    		    $scope.addItem = function() {
-    		      var r = Math.ceil(Math.random() * 1000);
-    		      $scope.radioData.push({ label: r, value: r });
-    		    };
-    		    $scope.removeItem = function() {
-    		      $scope.radioData.pop();
-    		    };
-
+    	//Load Distinct Poll Choices 
+    	$scope.pollChoice = function(poll_Id){
+    		$scope.pollResp=false;
+    		console.log("in controller " + poll_Id);
+        	console.log("Allowing to choose options");
+        	$http.post('/pollAnswers',{poll_Id:poll_Id, id:5}).success(function(responses){
+    			console.log(responses);
+    			$scope.pollAnswers = responses;
+    			$scope.pollResp=true;
+    		});
+        }
     	
     	
-    	
-    	
-    	
+    	//Select Poll Opinion    	
+$scope.responseSubmit = function(){
+    		
+    		console.log("in controller  "  + "and response " + $scope.pollAnswers.response) ;
+        	console.log("Poll option selected");
+        	$http.post('/pollAnswerSelect',{response:$scope.pollAnswers.response, id:5}).success(function(responses){
+    			console.log(responses);
+    			$scope.pollSelect = responses;
+    		
+    		});
+        }
     	
     	
     	
@@ -184,4 +167,9 @@ angular
 
     };
   })
+  
+  
+  
+  
+  
   

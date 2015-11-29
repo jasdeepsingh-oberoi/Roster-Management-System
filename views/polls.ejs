@@ -99,7 +99,7 @@
       	<td>{{que.question}}</td>
       	
      	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
-		<td><md-button class="md-raised"><a href="" ng-click="pollResponse(que.poll_Id)">Respond</a></md-button></td>
+		<td><md-button class="md-raised"><a href="" ng-click="pollChoice(que.poll_Id)">Respond</a></md-button></td>
      </tbody>	
       </table>
     </div>
@@ -128,32 +128,33 @@
      	
     </div>
     
-    
+   
 
- <div class="table-responsive" ng-show="pollResp" >          
-  <table class="table">
+<hr />
+ <div ng-show="pollResp">          
     
-    <thead>
-      <tr>
-        <th>Name</th>
-    <!--<th>Choice</th>-->
-        <th>Response</th>
-      </tr>
-    </thead>
+    <p>Selected Value: <span class="radioValue">{{pollAnswers.response}}</span></p>
     
+    <md-radio-group ng-model="pollAnswers.response" class="md-primary" ng-repeat="options in pollAnswers">
+       
+        <md-radio-button  ng-value="options.response"
+                        
+         <label>{{options.response}}                
+        </md-radio-button>
+       	</label>
+    </md-radio-group>
+
+      <md-button class="md-raised md-primary" ng-click="responseSubmit()">Submit Response</md-button>
+
+     
     
-    <tbody>
-      
-        <tr ng-repeat="resp in pollResponses">
-      	<td>{{resp.firstName}} {{resp.lastName}}</td>
-    <!--<td>{{resp.responseChoice}}</td>-->
-      	<td>{{resp.response}}</td>
-    
-    </tbody>
-    </table>
-     	
-    </div>
+ <!--   </form> -->
+ <hr />
  
+ 
+</div>
+     	
+
  
  
  

@@ -59,6 +59,11 @@ app.post('/polls/create', polls.createPoll);
 //Opening individual Polls
 app.post('/pollDetails', polls.pollDetails);
 
+//Poll Unique Answers
+app.post('/pollAnswers', polls.pollAnswers);
+
+//Sending Poll Opinion to DB
+app.post('/pollAnswerSelect', polls.pollAnswerSelect);
 
 
 //Logout
