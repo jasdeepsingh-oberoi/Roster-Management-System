@@ -28,16 +28,15 @@
 
   <body>
 
-    <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
+  <div ng-controller="pollsCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
 
-  <section layout="row" flex="">
+  <section layout="row" >
 		
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools" align ="center">&nbsp Welcome! &nbsp{{firstName}} {{lastName}}</h1>
       </md-toolbar>
-      
       
       
       <md-content layout-padding="" ng-controller="LeftCtrl">
@@ -59,17 +58,37 @@
     <md-content flex="" layout-padding="">
 
 	<h1 align="center">Polls Page</h1>
+	
+	<div layout="column" layout-fill="" layout-align="top left">
+	<ng-button href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose" ng-click="addPoll()"><i class="zmdi zmdi-plus"></i><md-tooltip md-direction="right">Create Poll</md-tooltip></n>
+	
+	</div>
+<div>
+<br><br>
+</div>
 
-    <div layout="column" layout-fill="" layout-align="top center">
-      
-   <div class="container" ng-show="pollQuestions">
+
+<div ng-show="poll">
+<md-content layout-padding class="autoScroll">
+    <md-input-container class="md-icon-float md-block">  
+     <input ng-model="newpoll.question" placeholder="Enter poll question here" type="text">
+     <md-button class="md-raised"><a href="" ng-click="createPoll(newpoll.question)">Ask</a></md-button>
+    </md-input-container>
+    
+  </md-content>
+</div>
+
+
+  <div layout="column" layout-fill="" layout-align="top center">
+    
+  <div class="container" ng-show="pollQuestions">
   <div class="table-responsive">          
   <table class="table">
     <thead>
       <tr>
         <th>Question</th>
-        <th>Respond</th>
         <th>Results</th>
+        <th>Respond</th>
       </tr>
     </thead>
     
@@ -78,21 +97,20 @@
         <tr ng-repeat="que in question">
         
       	<td>{{que.question}}</td>
-      	<td><a href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose">
-            <i class="zmdi zmdi-plus"></i>
-        </a></td>
+      	
      	<td><md-button class="md-raised"><a href="" ng-click="polldetail(que.poll_Id)">View</a></md-button></td>
-     	
+		<td><md-button class="md-raised"><a href="" ng-click="pollChoice(que.poll_Id)">Respond</a></md-button></td>
      </tbody>	
       </table>
     </div>
     
-      <div class="table-responsive">          
+  <div class="table-responsive"  ng-show=" pollResponses.length > 0" >          
   <table class="table">
+    
     <thead>
       <tr>
         <th>Name</th>
-        <th>Choice</th>
+    <!--<th>Choice</th>-->
         <th>Response</th>
       </tr>
     </thead>
@@ -101,22 +119,45 @@
     <tbody>
       
         <tr ng-repeat="resp in pollResponses">
-        
       	<td>{{resp.firstName}} {{resp.lastName}}</td>
-      	<td>{{resp.responseChoice}}</td>
+    <!--<td>{{resp.responseChoice}}</td>-->
       	<td>{{resp.response}}</td>
     
     </tbody>
     </table>
      	
     </div>
+    
+   
+
+<hr />
+ <div ng-show="pollResp">          
+    
+    <p>Selected Value: <span class="radioValue">{{pollAnswers.response}}</span></p>
+    
+    <md-radio-group ng-model="pollAnswers.response" class="md-primary" ng-repeat="options in pollAnswers">
+       
+        <md-radio-button  ng-value="options.response"
+                        
+         <label>{{options.response}}                
+        </md-radio-button>
+       	</label>
+    </md-radio-group>
+
+      <md-button class="md-raised md-primary" ng-click="responseSubmit()">Submit Response</md-button>
+
+     
+    
+ <!--   </form> -->
+ <hr />
+ 
+ 
+</div>
+     	
 
  
-
-
-
-
-
+ 
+ 
  <script>
  
  	var x = document.getElementsByClassName("test");
@@ -136,8 +177,6 @@
   </table>
   </div>
 </div>
-      
-      
        
       <div flex=""></div>
 

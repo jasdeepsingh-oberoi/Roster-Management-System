@@ -285,12 +285,12 @@ materialAdmin
         //Login
         $scope.login = function(){
         	console.log("Hi i am in controller");
-        	//$scope.emailId = "ajeet@gmail.com";
-        	//$scope.password = "ajeet";
+        	
+        	
         	
         	console.log($scope.emailId);
         	console.log($scope.password);
-    		$http.post('/login',{emailId : $scope.emailId, password : $scope.password}).success(function(response){
+    		$http.post('/login',{emailId:$scope.emailId, password : $scope.password}).success(function(response){
     			var result = response;
     			console.log("Hi i am back in controller");
     			console.log(result);
