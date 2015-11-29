@@ -50,7 +50,19 @@
         
       </div>
 
-      <div flex=""></div>
+      <div flex="">
+      
+      <form action="/groups/create" method="get">
+  GroupName:<input type="text" name="groupName">
+  <input type="submit"></input>
+  </form>
+  
+   <form action="/groups/addmember" method="post">
+  emailId:<input type="text" name="emailId">
+  <input type="submit"></input>
+  </form>
+      
+      </div>
 
     </md-content>
 
@@ -70,3 +82,24 @@
     
 </body>
 </html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <form action="/groups/create" method="get">
+  GroupName:<input type="text" name="groupName">
+  <input type="submit"></input>
+  </form>
+  </body>
+</html>
+
+

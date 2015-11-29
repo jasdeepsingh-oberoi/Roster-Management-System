@@ -9,6 +9,7 @@ var express = require('express')
   ,home = require('./routes/home')
   ,polls = require('./routes/polls')
   , user = require('./routes/user')
+  , groups = require('./routes/groups')
   , http = require('http')
   , path = require('path')
   ,task =require('./routes/task');
@@ -52,12 +53,13 @@ app.get('/fetchName', home.fetchName);
 //Loading Existing Polls for the Group
 app.get('/polls', polls.existingPolls);
 app.get('/pollsPageLoad', polls.pollsPageLoad);
-
+app.get('/groupsPageLoad',groups.callgroups);
 //Opening individual Polls
 app.post('/pollDetails', polls.pollDetails);
 
-
-
+app.get('/groups',groups.callgroups);
+app.get('/groups/create',groups.creategroup);
+app.post('/groups/addmember',groups.addMemberToGroup);
 //Logout
 app.get('/logout',home.logout);
 

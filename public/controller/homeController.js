@@ -23,6 +23,16 @@ angular
         	window.location = '/pollsPageLoad';
     		/*$http.get('/pollsPageLoad').success(function(response){
         		//window.location = '/pollsPageLoad';
+                 console.log(response);
+        	});*/
+        }
+    	
+    	
+    	$scope.groupsPage = function(){
+        	console.log("Confirmed into groups controller!");
+        	window.location = '/groupsPageLoad';
+    		/*$http.get('/pollsPageLoad').success(function(response){
+        		//window.location = '/pollsPageLoad';
         		console.log(response);
         	});*/
         }
