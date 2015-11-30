@@ -55,10 +55,11 @@
     
     </md-sidenav>
 
-    <md-content flex="" layout-padding="">
+    <md-content  layout-padding="">
+<md-toolbar>
 
 	<h1 align="center">Polls Page</h1>
-	
+</md-toolbar>	
 	<div layout="column" layout-fill="" layout-align="top left">
 	<ng-button href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose" ng-click="addPoll()"><i class="zmdi zmdi-plus"></i><md-tooltip md-direction="right">Create Poll</md-tooltip></n>
 	
@@ -135,15 +136,16 @@
     
     <p>Selected Value: <span class="radioValue">{{pollAnswers.response}}</span></p>
     
-    <md-radio-group ng-model="pollAnswers.response" class="md-primary" ng-repeat="options in pollAnswers">
+    <md-radio-group ng-model="pollAnswers.response" class="md-primary" >
        
-        <md-radio-button  ng-value="options.response"
-                        
-         <label>{{options.response}}                
-        </md-radio-button>
-       	</label>
-    </md-radio-group>
-
+        <md-radio-button ng-repeat="options in pollAnswers"  ng-value="options.response">{{options.response}}</md-radio-button>
+       	
+    	
+	  <md-radio-button ng-value="pollRespons.other">Other</md-radio-group>
+      <md-input-container>
+      
+      <input ng-model="pollRespons.other" placeholder="Other">
+      </md-input-container>
       <md-button class="md-raised md-primary" ng-click="responseSubmit()">Submit Response</md-button>
 
      

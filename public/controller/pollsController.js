@@ -108,7 +108,8 @@ $scope.responseSubmit = function(){
         	$http.post('/pollAnswerSelect',{response:$scope.pollAnswers.response, id:5}).success(function(responses){
     			console.log(responses);
     			$scope.pollSelect = responses;
-    		
+    			$scope.pollResp=false;
+    			
     		});
         }
     	
