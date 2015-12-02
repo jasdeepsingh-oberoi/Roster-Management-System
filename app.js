@@ -53,7 +53,7 @@ app.get('/fetchName', home.fetchName);
 //Loading Existing Polls for the Group
 app.get('/polls', polls.existingPolls);
 app.get('/pollsPageLoad', polls.pollsPageLoad);
-<<<<<<< HEAD
+
 app.get('/groupsPageLoad',groups.callgroups);
 //Opening individual Polls
 app.post('/pollDetails', polls.pollDetails);
@@ -61,7 +61,7 @@ app.post('/pollDetails', polls.pollDetails);
 app.get('/groups',groups.callgroups);
 app.get('/groups/create',groups.creategroup);
 app.post('/groups/addmember',groups.addMemberToGroup);
-=======
+
 
 // Create new poll question
 app.post('/polls/create', polls.createPoll);
@@ -76,7 +76,6 @@ app.post('/pollAnswers', polls.pollAnswers);
 app.post('/pollAnswerSelect', polls.pollAnswerSelect);
 
 
->>>>>>> origin/master
 //Logout
 app.get('/logout',home.logout);
 
