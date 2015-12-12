@@ -10,6 +10,8 @@ var express = require('express')
   ,polls = require('./routes/polls')
   , user = require('./routes/user')
   , groups = require('./routes/groups')
+  ,shoppinglist = require('./routes/shoppinglist')
+  , taskstats = require('./routes/taskstats')
   , http = require('http')
   , path = require('path')
   ,task =require('./routes/task');
@@ -45,23 +47,29 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', landingPage.load);
+app.get('/login_signup', landingPage.loginSignupLoad);
+
+
+
+app.post('/signup', landingPage.signup);
 app.post('/login', landingPage.login);
+
 app.get('/home', home.load);
-app.get('/fetchTasks', task.fetchTask);
+//app.get('/fetchTasks', task.fetchTask);
 app.get('/fetchName', home.fetchName);
 
 //Loading Existing Polls for the Group
 app.get('/polls', polls.existingPolls);
 app.get('/pollsPageLoad', polls.pollsPageLoad);
-<<<<<<< HEAD
+
 app.get('/groupsPageLoad',groups.callgroups);
 //Opening individual Polls
 app.post('/pollDetails', polls.pollDetails);
 
 app.get('/groups',groups.callgroups);
-app.get('/groups/create',groups.creategroup);
+app.post('/groups/create',groups.creategroup);
 app.post('/groups/addmember',groups.addMemberToGroup);
-=======
+
 
 // Create new poll question
 app.post('/polls/create', polls.createPoll);
@@ -75,8 +83,37 @@ app.post('/pollAnswers', polls.pollAnswers);
 //Sending Poll Opinion to DB
 app.post('/pollAnswerSelect', polls.pollAnswerSelect);
 
+//All Task Routes
+app.post('/createtask', task.createtask);
+app.post('/addmember', task.addmember);
+app.get('/fetchTasks', task.fetchTask); //fetches tasks overdue for last one month.
+app.get('/fetchUpcomingTask', task.fetchUpcomingTask);
+app.get('/fetchTodayTask', task.fetchTodayTask);
+app.post('/signofftask', task.signOffTask);
+app.get('/fetchName', home.fetchName);
+app.get('/loadTasksPage',home.loadTasksPage);
+app.get('/createTaskForm',task.loadForm);
 
->>>>>>> origin/master
+// All Task Stats
+app.get('/taskStats1',taskstats.taskStats1);
+app.get('/taskStats2',taskstats.taskStats2);
+app.get('/taskstatLoad',taskstats.taskstatLoad);
+
+
+//All Shopping Routes
+app.get('/loadshoppingPage', shoppinglist.load);
+
+//Add Shopping Item
+app.post('/shoppinglist', shoppinglist.addshoppingItem);
+
+//Sign Off Shopping Item
+app.post('/shoppinglist/complete', shoppinglist.removingshoppingItem);
+
+app.get('/fetchshopitems',shoppinglist.fetchShopItem);
+
+
+
+
 //Logout
 app.get('/logout',home.logout);
 

@@ -22,6 +22,12 @@ function fetchName(req,res){
 }
 
 
+function loadTasksPage(req,res){
+	console.log("loading task page");
+	res.render('task_anuj');
+}
+
+
 
 //Logout the user - invalidate the session
 exports.logout = function(req,res)
@@ -30,6 +36,6 @@ req.session.destroy();
 res.redirect('/');
 };	      
 
-
+exports.loadTasksPage = loadTasksPage;
 exports.fetchName = fetchName;
 exports.load = load;

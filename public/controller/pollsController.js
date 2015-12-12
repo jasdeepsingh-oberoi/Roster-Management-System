@@ -1,3 +1,4 @@
+
 angular
   .module('MyApp')
   .controller('pollsCtrl', function ($scope, $timeout, $mdSidenav, $log, $http, $compile) {
@@ -7,16 +8,62 @@ angular
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
+
     
     
-//    	$http.get('/fetchName').success(function(response){
-//    		var name = response;
-//    		console.log("I am back in name controller");
-//    		console.log(name);
-//    		$scope.firstName=response[0].firstName;
-//    		$scope.lastName=response[0].lastName;
-//    	});
-    	
+    
+    $scope.loadTasks = function(){
+    	console.log("In load task page controller");
+    	window.location = '/loadTasksPage';
+    }
+	
+	$scope.loadshopping = function(){
+    	console.log("In load shopping page controller");
+    	window.location = '/loadshoppingPage';
+    }
+	
+	
+	$scope.pollsPage = function(){
+    	console.log("Confirmed into polls controller!");
+    	window.location = '/pollsPageLoad';
+		/*$http.get('/pollsPageLoad').success(function(response){
+    		//window.location = '/pollsPageLoad';
+             console.log(response);
+    	});*/
+    }
+	
+	
+	$scope.groupsPage = function(){
+    	console.log("Confirmed into groups controller!");
+    	window.location = '/groupsPageLoad';
+		/*$http.get('/pollsPageLoad').success(function(response){
+    		//window.location = '/pollsPageLoad';
+    		console.log(response);
+    	});*/
+    }
+	
+	$scope.taskstatLoad = function(){
+		console.log("Hi I will load stats page");
+		window.location = '/taskstatLoad' ;
+	 
+	}
+	
+$scope.tasks = function(){    	
+	$http.get('/fetchTasks').success(function(response){
+		console.log(response);
+	});
+}
+
+/*
+$scope.stats = function(){
+	$http.get('/taskStats2').success(function(response){
+		console.log(response);
+		$scope.emailIdStats = response;
+	});
+	console.log("Hi this is from stats function");
+}
+    
+    	*/
     	
     	//This function will display the form to add new poll question
     	$scope.poll = false;
@@ -159,6 +206,10 @@ $scope.responseSubmit = function(){
       }
     }
   })
+  
+  
+  
+  
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close()

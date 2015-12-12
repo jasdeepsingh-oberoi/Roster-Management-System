@@ -7,7 +7,11 @@ angular
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
-    
+        
+ 
+   	
+   
+  
     
     	$http.get('/fetchName').success(function(response){
     		var name = response;
@@ -17,6 +21,16 @@ angular
     		$scope.lastName=response[0].lastName;
     	});
     
+    	$scope.loadTasks = function(){
+        	console.log("In load task page controller");
+        	window.location = '/loadTasksPage';
+        }
+    	
+    	$scope.loadshopping = function(){
+        	console.log("In load shopping page controller");
+        	window.location = '/loadshoppingPage';
+        }
+    	
     	
     	$scope.pollsPage = function(){
         	console.log("Confirmed into polls controller!");
@@ -38,11 +52,17 @@ angular
         }
     	
     	
-    $scope.tasks = function(){
+    $scope.tasks = function(){    	
     	$http.get('/fetchTasks').success(function(response){
     		console.log(response);
     	});
     }
+    
+    
+    
+    
+    
+    
     
     /**
      * Supplies a function that will continue to operate until the

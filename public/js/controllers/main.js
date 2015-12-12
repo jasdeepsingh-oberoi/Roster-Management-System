@@ -5,7 +5,7 @@ materialAdmin
 
     .controller('materialadminCtrl', function($timeout, $state, growlService){
         //Welcome Message
-        growlService.growl('Welcome back Mallinda!', 'inverse')
+        
         
         
         // Detact Mobile Browser
@@ -50,7 +50,318 @@ materialAdmin
         this.wallLink = false;
     })
 
+    
+    // =========================================================================
+    // Tasks Controller
+    // =========================================================================
+    
+    	.controller('appCtrl', function($scope,$http){
+    // Get Best Selling widget Data
+    		
+    		$scope.task = false;	
+    	console.log("Hi from task Controller");
+    	
+    	$http.get('/fetchTasks').success(function(response){
+    		console.log(response);
+    		$scope.overDueTasks = response;
+    	});
+    	
+    	
+    	$http.get('/fetchUpcomingTask').success(function(response){
+    		console.log(response);
+    		$scope.upcomingTasks = response;
+    	});
+    	
+    	
+    	$scope.addTask = function(){
+        	console.log("Allowing to create new task now");
+    		$http.get('/fetchTasks').success(function(response){
+    			$scope.task=true;
+        		
+        	});
+        }
+    	
+    	$scope.createNewTask = function(){
+    		console.log($scope.newTaskName);
+    		console.log($scope.newTaskDate);
+    		console.log($scope.newTaskTime);
+    		console.log($scope.newTaskTimeTaken);
+    		console.log($scope.repetition);
+    		var newtime =  $scope.newTaskTime;
+    		var newtime1 = newtime + " ";
+    		var dueTime = newtime1.slice(15,24);
+    		console.log(dueTime);
+    		$http.post('/createtask',
+    				{taskName:$scope.newTaskName, dueDate:$scope.newTaskDate, dueTime:dueTime, timeTaken:$scope.newTaskTimeTaken, repetition: $scope.repetition }).success(function(response){
+    			console.log(response);
+    		});
+    		$scope.newTaskName = "";
+    		$scope.newTaskDate = "";
+    		$scope.newTaskTime = "";
+    		$scope.newTaskTimeTaken = "";
+    		$scope.repetition = "";
+    	}
+    	
+    	$scope.addMember = function(){
+    		console.log($scope.precedence);
+    		console.log($scope.emailId);
+    		$http.post('/addmember',{precedence:$scope.precedence, emailId:$scope.emailId}).success(function(response){
+	    		console.log(response);
+	    		$scope.overDueTasks = response;
+	    	});
+    	} 
+    	
+    	
+    	$http.get('/fetchName').success(function(response){
+    		var name = response;
+    		console.log("I am back in name controller");
+    		$scope.firstName=response[0].firstName;
+    		$scope.lastName=response[0].lastName;
+    		console.log($scope.firstName);
+    	});
+    	
+    	$scope.taskDone = function(taskId){
+    		$http.post('/signofftask', {taskId:taskId}).success(function(response){
+	    		console.log(response);
+	    		window.location = '/loadTasksPage';
+	    		
+	    	});
+    	}
+   
+    	})
+    
 
+    //=================================================
+    //shopping
+    //====================================================
+    
+      .controller('shoppingAjeet', function($scope,$http){
+    	 console.log("Shopping List Controller is connected now");
+    	 
+    	 $scope.shopInput = false;
+    	 
+    	 $http.get('/fetchshopitems').success(function(response){
+    	    	console.log("Fetching Items");
+    	    	console.log(response);
+    	    	$scope.dueItems = response;
+    	    });
+    	 
+    		$scope.addShoppingView = function(){
+    	    	console.log("Allowing to add new shopping item");
+    			$http.get('/loadshoppingPage').success(function(response){
+    				$scope.shopInput=true;
+    	    		
+    	    	});
+    	    }
+    	    
+    	    $scope.addShop = function(){
+    	    	ItemName = $scope.ItemName;
+    	    	console.log(ItemName);
+    	    $http.post('/shoppinglist',{ItemName:ItemName}).success(function(response){
+    	    console.log("Into the function");
+    	    window.location = '/loadshoppingPage'
+    	     });
+    	    }
+    	    
+    	    $scope.shopComplete = function(itemId){
+    	    	//itemId = $scope.itemId;
+    	    	console.log(itemId);
+    	    $http.post('/shoppinglist/complete',{itemId:itemId}).success(function(response){
+    	    console.log("Into the function");
+    	    console.log(response);
+    	        window.location = '/loadshoppingPage';
+    	     });
+    	    }
+    })
+    
+    
+    
+    // =========================================================================
+    // Stats Controller
+    // =========================================================================
+
+	.controller('statsCtrl', function($scope, $http){
+	    console.log("This is from stats Controller");
+	    
+		$http.get('/taskStats2').success(function(response){
+    		console.log(response);
+    		$scope.emailIdStats = response;
+    	});
+		
+		$scope.TaskWise = function(){
+    		$http.get('/taskStats1').success(function(response){
+        		console.log(response);
+        		$scope.taskIdStats = response;
+        	});
+        	console.log("Hi this is from stats function");
+    	}
+	})
+	
+	
+	 // =========================================================================
+    // Groups Controller
+    // =========================================================================
+
+	.controller('groupsCtrl', function($scope, $http){
+	    console.log("This is from Groups Controller");
+	    $scope.group = false;
+	    $scope.member = false;
+	    
+	    $scope.addGroup = function(){
+	    	console.log("Allowing to create new group now");
+			$http.get('/groups').success(function(response){
+				$scope.group=true;
+	    		
+	    	});
+	    }
+	  
+	    $scope.createGroup = function(){				//This function will create new Group
+			var groupName = $scope.newgroup.groupName ;
+	    	console.log("Adding a new group");
+			$http.post('/groups/create',{groupName:groupName}).success(function(response){
+				console.log("Group name sent to SQL");
+				window.location = '/groupsPageLoad';
+	    	});
+	    }
+	    
+	    $scope.addMember = function(){				////This function will display the form to add new Group Members
+	    	console.log("Allowing to add new group member now");
+	    	$scope.member = true;
+	    	$http.get('/groups').success(function(response){
+	    	
+	    	});
+	    }
+	    
+		//This function will add new Group Members
+		$scope.newMember = function(){
+			var emailid = $scope.newgroup.emailid ;
+	    	console.log("Adding a new member to the group");
+			$http.post('/groups/addmember',{emailid:emailid}).success(function(response){  
+				console.log("Group Member emailid sent to SQL");
+				window.location = '/groupsPageLoad';
+	    	});
+	    }
+		
+	  
+		
+	})
+	
+	
+	
+	
+    // =========================================================================
+    // Polls Ajeet Controller
+    // =========================================================================
+	.controller('pollsAjeetCtrl', function($scope, $http){
+	    console.log("This is from Polls Ajeet Controller");
+	    
+		$scope.pollsPage = function(){
+	    	console.log("Confirmed into polls controller!");
+	    	window.location = '/pollsPageLoad';
+			/*$http.get('/pollsPageLoad').success(function(response){
+	    		//window.location = '/pollsPageLoad';
+	             console.log(response);
+	    	});*/
+	    }
+		
+		
+    	//This function will display the form to add new poll question
+    	$scope.poll = false;
+    	$scope.addPoll = function(){
+        	console.log("Allowing to create new poll now");
+    		$http.get('/polls').success(function(response){
+    			$scope.poll=true;
+        		
+        	});
+        }
+    
+    	//This function will submit new poll question
+    	$scope.createPoll = function(question){
+        	console.log("Adding a new poll question");
+    		$http.post('/polls/create',{question:question, id:5}).success(function(response){
+    			console.log("Poll question sent to SQL");
+    			window.location = '/pollsPageLoad';
+        	});
+        }
+
+    	
+    	// This function will load all the poll questions
+    	$scope.pollQuestions = true;
+    	$http.get('/polls').success(function(response){
+    		$scope.question=response;
+    		console.log(response);
+    	});
+    
+    	$http.get('/polls/:name').success(function(response){
+    		console.log("Free load");
+    		$scope.answer=response;
+    		console.log(response);
+    	});
+    	
+    	
+    
+    	// Polls Sidenav Function
+    	$scope.polls = function(){
+        	console.log("Confirmed into polls controller!");
+    		$http.get('/polls').success(function(response){
+    			window.location = '/pollsPageLoad';
+    			//$scope.question=response;
+        		//console.log(response);
+        	});
+        }
+    	
+    	
+    	//This function will fetch poll details
+    	$scope.polldetail = function(poll_Id){
+    		console.log("in controller " + poll_Id);
+    		$http.post('/pollDetails',{poll_Id:poll_Id, id:5}).success(function(response){
+    			console.log(response);
+    			$scope.pollResponses = response;
+    		});
+    	}
+    	
+    	
+    	
+    	//This function will display the form to add new poll response
+    	$scope.pollResp = false;
+    	$scope.pollResponse = function(){
+        	console.log("Allowing to respond to this poll");
+    		$http.get('/polls').success(function(response){
+    			$scope.pollResp=true;
+        		
+        	});
+        }
+    	
+    	
+    		
+    	//Load Distinct Poll Choices 
+    	$scope.pollChoice = function(poll_Id){
+    		$scope.pollResp=false;
+    		console.log("in controller " + poll_Id);
+        	console.log("Allowing to choose options");
+        	$http.post('/pollAnswers',{poll_Id:poll_Id, id:5}).success(function(responses){
+    			console.log(responses);
+    			$scope.pollAnswers = responses;
+    			$scope.pollResp=true;
+    		});
+        }
+    	
+    	
+    	//Select Poll Opinion    	
+$scope.responseSubmit = function(){
+    		
+    		console.log("in controller  "  + "and response " + $scope.pollAnswers.response) ;
+        	console.log("Poll option selected");
+        	$http.post('/pollAnswerSelect',{response:$scope.pollAnswers.response, id:5}).success(function(responses){
+    			console.log(responses);
+    			$scope.pollSelect = responses;
+    			$scope.pollResp=false;
+    			
+    		});
+        }
+    	
+		
+	})
     // =========================================================================
     // Header
     // =========================================================================
@@ -199,8 +510,12 @@ materialAdmin
         this.id = recentitemService.id;
         this.name = recentitemService.name;
         this.parseInt = recentitemService.price;
-        
         this.riResult = recentitemService.getRecentitem(this.id, this.name, this.price);
+        console.log("Hi from recentitem controller");
+        $http.get('/fetchTasks').success(function(response){
+        	console.log(response);
+        	$scope.OverdueTasks = response;
+        });
     })
 
 
@@ -281,7 +596,7 @@ materialAdmin
         this.login = 1;
         this.register = 0;
         this.forgot = 0;
-    
+        console.log("Hi i am in login controllerrrrrrrrrrrrrrrrrrr");
         //Login
         $scope.login = function(){
         	console.log("Hi i am in controller");
@@ -299,13 +614,39 @@ materialAdmin
     				window.location = '/';				
     				}
     			else{
-    				window.location = '/home'
+    				window.location = '/loadTasksPage'
+    				//window.location = '/home'
     			}
     			
     		});
 
     	};
     
+    	
+        //Signup
+        $scope.signup = function(){
+        	console.log("Hi i am in controller");
+        	
+        	this.register = 1;
+        	
+        	console.log($scope.signup.firstName);
+        	console.log($scope.signup.lastName);
+        	console.log($scope.signup.emailid);
+        	console.log($scope.signup.password);
+    		
+        	$http.post('/signup',{firstName:$scope.signup.firstName, lastName:$scope.signup.lastName,   emailid:$scope.signup.emailid, password :$scope.signup.password}).success(function(response){
+    			var result = response;
+    			console.log("Hi i am back in controller");
+    			console.log(result);
+    			window.location = '/';				
+    			
+    		});
+
+    	};
+    	
+    	
+    	
+    	
     
     })
 
