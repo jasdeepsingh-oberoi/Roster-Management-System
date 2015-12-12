@@ -1,0 +1,173 @@
+   <!--[if IE 9 ]><html class="ie9" data-ng-app="materialAdmin" data-ng-controller="materialadminCtrl as mactrl"><![endif]-->
+    <![if IE 9 ]><html data-ng-app="materialAdmin" data-ng-controller="materialadminCtrl as mactrl"><![endif]>
+
+    <head>
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Live Fair</title>
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link rel='stylesheet prefetch' href='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc4/angular-material.css'>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
+
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        <link href="css/demo.css" rel="stylesheet">
+
+    </head>
+
+<body>
+
+
+<header id="header" data-ng-include="'/template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'/template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+    
+    <section id="content">
+        <div data-ng-controller="groupsCtrl">
+        <md-content class="layout-padding flex" style="
+            padding-top: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+        ">
+            
+            
+        <md-toolbar style="
+            padding-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            height: 64px;
+        ">
+
+            <h1 align="center" style="
+            margin-top: 18px;
+            margin-bottom: 9px;
+            height: 36px;
+        ">Groups</h1>
+        </md-toolbar>
+
+        <br>    
+            <div layout="column" layout-fill="" layout-align="top left">
+            <ng-button href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose" ng-click="addGroup()"><i class="zmdi zmdi-plus"></i><md-tooltip md-direction="right">Create Group</md-tooltip></n>
+            </div>
+        <div>
+        <br><br><br>
+        </div>
+
+
+        <div flex="">
+              
+        <div class="col-sm-4" ng-show="group">
+        <md-content  class="autoScroll">
+            <md-input-container class="md-icon-float md-block">  
+             <input ng-model="newgroup.groupName" placeholder="Group Name" type="text">
+             <md-button class="md-raised "><a href="" ng-click="createGroup()">Submit</a></md-button>
+            </md-input-container>
+          </md-content>
+        <br>
+        </div>
+         
+   
+            <div layout="column" layout-fill="" layout-align="top left">
+            <ng-button href="" class="btn bgm-red btn-float waves-effect waves-circle" id="ms-compose" ng-click="addMember()"><i class="zmdi zmdi-plus"></i><md-tooltip md-direction="right">Add Members</md-tooltip></n>
+            </div>
+        <div>
+        <br><br><br>
+        </div>
+         
+         <div class="col-sm-4" ng-show="member" >
+        <md-content  class="autoScroll">
+            <md-input-container class="md-icon-float md-block">  
+             <input ng-model="newgroup.emailid" placeholder="Member Email" type="email">
+             <md-button class="md-raised "><a href="" ng-click="newMember()">Submit</a></md-button>
+            </md-input-container>
+          </md-content>
+        <br>
+        </div>
+         
+         
+         </div>
+         
+
+        </md-content>
+
+        </div>    
+    </section>
+</section>
+
+
+
+
+<!-- Core -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <!-- Angular -->
+        <script src="vendors/bower_components/angular/angular.min.js"></script>
+        <script src="vendors/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="vendors/bower_components/angular-resource/angular-resource.min.js"></script>
+        
+        <!-- Angular Modules -->
+        <script src="vendors/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="vendors/bower_components/angular-loading-bar/src/loading-bar.js"></script>
+        <script src="vendors/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+        <script src="vendors/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+        <!-- Common Vendors -->
+        <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/ng-table/dist/ng-table.min.js"></script>
+       
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <!-- Using below vendors in order to avoid misloading on resolve -->
+        <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="vendors/bower_components/flot-orderBars/js/jquery.flot.orderBars.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.pie.js"></script>
+        <script src="vendors/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+        <script src="vendors/bower_components/angular-nouislider/src/nouislider.min.js"></script>
+        
+        
+        <!-- App level -->
+        <script src="js/app.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/controllers/main.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/templates.js"></script>
+        <script src="js/controllers/ui-bootstrap.js"></script>
+        <script src="js/controllers/table.js"></script>
+
+
+        <!-- Template Modules -->
+        <script src="js/modules/template.js"></script>
+        <script src="js/modules/ui.js"></script>
+        <script src="js/modules/charts/flot.js"></script>
+        <script src="js/modules/charts/other-charts.js"></script>
+        <script src="js/modules/form.js"></script>
+        <script src="js/modules/media.js"></script>
+        <script src="js/modules/components.js"></script>
+        <script src="js/modules/calendar.js"></script>
+        
+</body>
+</html>
