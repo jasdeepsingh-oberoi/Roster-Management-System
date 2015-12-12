@@ -3,9 +3,9 @@ This system solves these problems by providing a mechanism which allows users to
 
 Contibution:
 
-Ajeet Sahu and Pawan Sharma: Database design
-Anuj Patel and Ajeet Sahu: Business logic
-Anuj Patel, Ajeet Sahu and Pawan Sharma: UI
-Jasdeepsingh Oberoi: Business logic
-Anuj Patel and Pawan Sharma: Deployment on cloud
-Jasdeepsingh Oberoi and Pawan Sharma: Report Submission
+1)Ajeet Sahu and Pawan Sharma: Database design,
+2)Anuj Patel and Ajeet Sahu: Business logic,
+3)Anuj Patel, Ajeet Sahu and Pawan Sharma: UI,
+4)Jasdeepsingh Oberoi: Business logic,
+5)Anuj Patel and Pawan Sharma: Deployment on cloud,
+6)Jasdeepsingh Oberoi and Pawan Sharma: Report Submission
